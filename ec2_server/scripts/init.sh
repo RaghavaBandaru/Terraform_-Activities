@@ -1,26 +1,5 @@
 #! /bin/bash
 
-# Global Variables
-LOG=/tmp/devops.log
-G="\e[32m"
-R="\e[31m"
-N="\e[0m"
-
-# Heading Function
-HEADING() {
-  echo -e "\n\t\t\e[1;4;33m$1\e[0m\n"
-}
-
-# Status check function
-STATUS_CHECK() {
-  if [ $1 -eq 0 ]; then
-    echo -e "$2 -- ${G}SUCCESS${N}"
-  else
-    echo -e "$2 -- ${R}FAILURE${N}"
-    exit 1
-  fi
-}
-
 # Set Hostname
 hostnamectl set-hostname server
 
@@ -52,7 +31,3 @@ STATUS_CHECK $? "Successfully Installed Required Softwares\t"
 
 sudo su - devops -c "git config --global user.name 'devops'"
 sudo su - devops -c "git config --global user.email 'devops@gmail.com'"
-
-## Enable color prompt
-curl -s https://gitlab.com/rns-app/linux-auto-scripts/-/raw/main/ps1.sh -o /etc/profile.d/ps1.sh
-chmod +x /etc/profile.d/ps1.sh
